@@ -1,0 +1,22 @@
+<main>
+    <section class="page_header">
+        <div class="title_page">
+            <h1>Thêm mới tài khoản</h1>
+        </div>
+    </section>
+    <div class="content_page">
+       
+        <form  (ngSubmit)="onSubmit()">
+            <div *ngFor="let key of keys ; index as i">
+                <label>
+                    {{key}} :
+                    <input type="text"  />
+                </label>
+                <br />
+            </div>
+        
+            
+            <button type="submit" [disabled]="!myForm.valid">submit</button>
+        </form>
+    </div>
+</main>

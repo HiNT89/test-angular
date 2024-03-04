@@ -1,23 +1,22 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { AccountService } from './core/services/account.service';
 import { Observable, Subject } from 'rxjs';
 import {
   Account,
   createAccount,
   createParamSearch,
-} from './core/model/account.model';
+} from './../../model/account.model';
 import { takeUntil } from 'rxjs/operators';
-import { Accounts } from './core/data/account';
-import * as faker from 'faker';
-import { Column } from './core/model/common.model';
-import { EventEmitter } from 'protractor';
 
+import * as faker from 'faker';
+import { Column } from '../../model/common.model';
+import { AccountService } from '../../services/account.service';
+import { Accounts } from '../../data/account';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class HomeComponent implements OnInit {
   // name = 'Angular ' + VERSION.major;
   account: Account[] = [];
   unSubscribeAll: Subject<any>;

@@ -1,0 +1,54 @@
+<div class="table_wrapper">
+    
+    <div *ngIf="rows.length; then notEmpty  else empty"></div>
+    <ng-template #notEmpty>
+        <div class="mytable">
+            <table class="mytable_content">
+                <colgroup>
+                    <col *ngFor="let column of columns; index as i" [width]="column.width">
+                    <col width="100px">
+                    <col width="100px">
+                </colgroup>
+                <thead class="mytable_head">
+                    <tr>
+                        <th *ngFor="let column of columns; index as i">
+                            <p>
+                                {{column.label}}
+                            </p>
+                        </th>
+                        <th colspan="2">
+                            action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="mytable_body">
+                    <tr *ngFor="let row of rows; index as i">
+                        <td *ngFor="let column of columns; index as i">
+                            <p>
+                                {{row[column.field]}}
+                            </p>
+                        </td>
+                        <td>
+                            <button>
+                                remove
+                            </button>
+                        </td>
+                        <td>
+                            <button>
+                                view
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </ng-template>
+    <ng-template #empty>
+        <div class="empty" #empty>Danh sách dữ liệu đang trống. Vui lòng <a href="/creat-data">
+                thêm mới
+            </a>
+        </div>
+    </ng-template>
+
+</div>
