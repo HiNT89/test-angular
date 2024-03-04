@@ -3,20 +3,28 @@
         <div class="title_page">
             <h1>Thêm mới tài khoản</h1>
         </div>
+
     </section>
     <div class="content_page">
-       
-        <form  (ngSubmit)="onSubmit()">
-            <div *ngFor="let key of keys ; index as i">
-                <label>
-                    {{key}} :
-                    <input type="text"  />
-                </label>
-                <br />
+
+        <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form">
+            <div class="btn-back">
+                <a [routerLink]="['']" routerLinkActive="active">back list</a>
             </div>
-        
-            
-            <button type="submit" [disabled]="!myForm.valid">submit</button>
+            <p *ngIf="mess" class="mess">{{mess}}</p>
+            <div *ngFor="let key of keys ; index as i" class="form_row">
+                <label [for]="key.title">
+                    {{key.title}} :
+
+                </label>
+                <input [type]="key.type" formControlName="{{key.key}}" [id]="key.title" />
+                <p *ngIf="!formData.controls[key.key]?.valid" class="error"> {{key.title}} is required </p>
+
+            </div>
+
+            <div class="form_footer">
+                <button type="submit" [disabled]="!formData.valid">submit</button>
+            </div>
         </form>
     </div>
 </main>

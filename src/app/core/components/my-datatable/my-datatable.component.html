@@ -1,5 +1,5 @@
 <div class="table_wrapper">
-    
+
     <div *ngIf="rows.length; then notEmpty  else empty"></div>
     <ng-template #notEmpty>
         <div class="mytable">
@@ -29,25 +29,28 @@
                             </p>
                         </td>
                         <td>
-                            <button>
+                            <button (click)="removeItem(row._id)">
                                 remove
                             </button>
                         </td>
                         <td>
-                            <button>
+                            <!-- <button (click)="view(row)">
                                 view
-                            </button>
+                            </button> -->
+                            <a [routerLink]="['detail/' + row._id]" routerLinkActive="active" (click)="view(row)">
+                                view
+                            </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-       
+
     </ng-template>
     <ng-template #empty>
-        <div class="empty" #empty>Danh sách dữ liệu đang trống. Vui lòng <a href="/creat-data">
-                thêm mới
-            </a>
+        <div class="empty" #empty>Danh sách dữ liệu đang trống. Vui lòng <a [routerLink]="['create']"
+                routerLinkActive="active">create</a>
+
         </div>
     </ng-template>
 

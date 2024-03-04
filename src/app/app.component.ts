@@ -179,18 +179,18 @@ export class AppComponent implements OnInit {
       _id: this.selectedAccount?._id,
     });
 
-    this.accountService
-      .editAccount(editedAccount)
-      .pipe(takeUntil(this.unSubscribeAll))
-      .subscribe(
-        (resp: Account[]) => {
-          this.getAllAccount();
-          this.isOpenEditAccount = false;
-        },
-        (err: Error) => {
-          this.account = [];
-        }
-      );
+    // this.accountService
+    //   .editAccount(editedAccount)
+    //   .pipe(takeUntil(this.unSubscribeAll))
+    //   .subscribe(
+    //     (resp: Account[]) => {
+    //       this.getAllAccount();
+    //       this.isOpenEditAccount = false;
+    //     },
+    //     (err: Error) => {
+    //       this.account = [];
+    //     }
+    //   );
   }
 
   saveNew(): void {
