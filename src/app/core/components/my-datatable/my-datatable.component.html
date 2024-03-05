@@ -34,9 +34,6 @@
                             </button>
                         </td>
                         <td>
-                            <!-- <button (click)="view(row)">
-                                view
-                            </button> -->
                             <a [routerLink]="['detail/' + row._id]" routerLinkActive="active" (click)="view(row)">
                                 view
                             </a>
@@ -44,7 +41,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button *ngIf = "isShowMore" class = "loaded" (click) = "nextPage()">learn more</button>
+            <button *ngIf="isShowMore" class="loaded" (click)="nextPage()">learn more</button>
         </div>
 
     </ng-template>

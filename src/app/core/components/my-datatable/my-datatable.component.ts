@@ -20,7 +20,7 @@ import { Subject } from 'rxjs';
   templateUrl: './my-datatable.component.html',
   styleUrls: ['./my-datatable.component.scss'],
 })
-export class MyDatatableComponent implements OnInit, OnChanges {
+export class MyDatatableComponent implements OnInit {
   @Input() rows!: { [x: string]: any }[];
   @Input()
   columns!: Column[];
@@ -28,14 +28,12 @@ export class MyDatatableComponent implements OnInit, OnChanges {
   page!: Page;
   @Input() nextPage!: () => void;
   @Input() view!: (acc: any) => void;
+  @Input() removeItem!: (id: string) => void;
   @Input() loading!: boolean;
   unSubscribeAll: Subject<any>;
   isShowMore = false;
   constructor(private accountService: AccountService) {
     this.unSubscribeAll = new Subject<any>();
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('next page', this.nextPage);
   }
   ngOnInit(): void {}
   public onEnter() {}

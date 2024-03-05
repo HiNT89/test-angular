@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, DoCheck {
   // name = 'Angular ' + VERSION.major;
   account: Account[] = [];
   unSubscribeAll: Subject<any>;
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   isOpenEditAccount = false;
   selectedAccount: Account | undefined;
   //
+  public removeState = '';
   public isLoading = false;
   public searchBy = 'last_name';
   public searchStr = '';
@@ -111,11 +112,20 @@ export class HomeComponent implements OnInit {
     page_current: 1,
     total_page: 1,
     page_size: 25,
+    page_current_cache: 1,
   };
+
   constructor(public accountService: AccountService) {
     // read data from file to localstorage
     this.unSubscribeAll = new Subject<any>();
     this.loadDataToLocal();
+    console.log('render');
+  }
+  ngDoCheck(): void {
+    if (this.page.page_current !== this.page.page_current_cache) {
+      this.getAllAccount();
+      this.page.page_current_cache = this.page.page_current;
+    }
   }
   ngOnInit(): void {
     this.getAllAccount();
@@ -169,6 +179,8 @@ export class HomeComponent implements OnInit {
       .subscribe(
         (resp: Account[]) => {
           this.getAllAccount();
+          console.log('res', resp);
+          this.removeState = '';
         },
         (err: Error) => {
           this.account = [];
@@ -176,8 +188,12 @@ export class HomeComponent implements OnInit {
       );
   }
   nextPage(): void {
-    this.getAllAccount();
+    // this.getAllAccount();
     this.page.page_current++;
-    console.log(this.page);
+  }
+  handleRemoveAccount(id: string): void {
+    // this.removeState.isActive = true;
+    this.removeState = id;
+    console.log('3', this.removeState);
   }
 }
