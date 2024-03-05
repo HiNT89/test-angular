@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, DoCheck, OnInit, VERSION } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {
   Account,
@@ -112,12 +112,11 @@ export class HomeComponent implements OnInit {
     total_page: 1,
     page_size: 25,
   };
-  constructor(private accountService: AccountService) {
+  constructor(public accountService: AccountService) {
     // read data from file to localstorage
     this.unSubscribeAll = new Subject<any>();
     this.loadDataToLocal();
   }
-
   ngOnInit(): void {
     this.getAllAccount();
   }
@@ -175,5 +174,10 @@ export class HomeComponent implements OnInit {
           this.account = [];
         }
       );
+  }
+  nextPage(): void {
+    this.getAllAccount();
+    this.page.page_current++;
+    console.log(this.page);
   }
 }

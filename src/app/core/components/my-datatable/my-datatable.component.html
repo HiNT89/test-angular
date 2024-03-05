@@ -2,7 +2,7 @@
 
     <div *ngIf="rows.length; then notEmpty  else empty"></div>
     <ng-template #notEmpty>
-        <div class="mytable">
+        <div class="mytable" id='my-table' (scroll)="checkScroll($event)">
             <table class="mytable_content">
                 <colgroup>
                     <col *ngFor="let column of columns; index as i" [width]="column.width">
@@ -29,7 +29,7 @@
                             </p>
                         </td>
                         <td>
-                            <button (click)="removeItem(row._id)">
+                            <button (click)="removeAccount(row._id)">
                                 remove
                             </button>
                         </td>
@@ -44,6 +44,7 @@
                     </tr>
                 </tbody>
             </table>
+            <button *ngIf = "isShowMore" class = "loaded" (click) = "nextPage()">learn more</button>
         </div>
 
     </ng-template>

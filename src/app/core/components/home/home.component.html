@@ -59,7 +59,7 @@
     <ng-template #showData>
         <div class="content_page">
             <app-my-datatable [rows]="account" [columns]="columns" [page]="page"
-                [loading]="isLoading" [removeItem]="removeAccount" [view] = "edit"></app-my-datatable>
+                [loading]="isLoading"  [view] = "edit" [nextPage] = "nextPage"></app-my-datatable>
             <div class="mytable_pagination">
 
                 <!-- <button [disabled]="page.page_current === 1" (click)="prevPage()">&#8592;</button>
