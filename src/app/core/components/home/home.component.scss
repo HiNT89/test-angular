@@ -37,9 +37,10 @@ main {
   padding: 0px 10% 20px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 8px;
   input {
-    width: 32px;
+    width: 44px;
     height: 32px;
     padding-left: 4px;
   }

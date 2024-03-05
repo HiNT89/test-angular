@@ -69,11 +69,13 @@
             </div>
         </div>
         <div class="pagination">
-            <select [value]="page.page_size" (change)="onChangePageSize($event)">
+          total item
+          <input (keyup.enter)="onChangePageSize($event)" [(ngModel)] = "page.page_size" type = "number" min = "6" max = "999" />
+            <!-- <select [value]="page.page_size" (change)="onChangePageSize($event)">
                 <option value="5">5</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
-            </select>
+            </select> -->
         </div>
     </ng-template>
 
