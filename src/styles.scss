@@ -1,12 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 html {
   font-size: 16px;
+  font-family: "Times New Roman", Times, serif;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-select ,button {
+select,
+button,
+.button {
+  padding: 6px 8px;
+  border-radius: 6px;
+  box-shadow: #000 0px 1px 2px;
+  text-transform: capitalize;
+  opacity: 0.9;
+  border: none;
+  text-decoration: none;
   cursor: pointer;
+  min-width: 80px;
+  font-weight: 500;
+  color: #3778ad;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  &:hover {
+    opacity: 1;
+  }
 }

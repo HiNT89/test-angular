@@ -1,7 +1,13 @@
 <main>
     <section class="page_header">
         <div class="title_page">
-            <h1>Thêm mới tài khoản</h1>
+            <div *ngIf="id; then edit; else create"></div>
+            <ng-template #create>
+                <h1>Thêm mới tài khoản</h1>
+            </ng-template>
+            <ng-template #edit>
+                <h1>Thông tin tài khoản</h1>
+            </ng-template>
         </div>
 
     </section>
@@ -9,7 +15,7 @@
 
         <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form">
             <div class="btn-back">
-                <a [routerLink]="['']" routerLinkActive="active">back list</a>
+                <a class="button" [routerLink]="['']" routerLinkActive="active">back list</a>
             </div>
             <p *ngIf="mess" class="mess">{{mess}}</p>
             <div *ngFor="let key of keys ; index as i" class="form_row">

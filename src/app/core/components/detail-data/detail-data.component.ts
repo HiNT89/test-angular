@@ -125,6 +125,14 @@ export class DetailDataComponent implements OnInit {
       this.getAccount();
     }
   }
+  getAccount1(id: string) : void {
+    this.accountService
+      .getAccountById(id)
+      .pipe(takeUntil(this.unSubscribeAll))
+      .subscribe((resp: Account) => {
+        console.log('res', resp);
+      });
+  }
   saveNew(): void {
     this.accountService
       .addAccount(this.formData.value)
@@ -161,7 +169,7 @@ export class DetailDataComponent implements OnInit {
   }
   public updateUser(): void {
     this.accountService
-      .editAccount(this.formData.value,this.id)
+      .editAccount(this.formData.value, this.id)
       .pipe(takeUntil(this.unSubscribeAll))
       .subscribe(
         (resp: Account[]) => {
